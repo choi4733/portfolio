@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background: #000;
+  background: #001005;
   scroll-behavior: smooth;
 }
 a,
@@ -82,7 +82,6 @@ video {
 .intro {
   width: 100%;
   height: 100vh;
-  background: #000;
   overflow: hidden;
 }
 .intro video {
@@ -97,13 +96,7 @@ video {
   opacity: 1;
 }
 
-.main_section {
-  width: 100%;
-  height: 100vh;
-  background: #000;
-}
-
-/* logo */
+/* nav */
 #header {
   position: fixed;
   top: 40px;
@@ -111,41 +104,12 @@ video {
   right: 40px;
 
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   height: 52px;
   z-index: 100;
 }
-.logo {
-  width: 90px;
-  height: 52px;
 
-  display: flex;
-  align-items: center;
-
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(40px);
-
-  transition:
-    opacity 1s ease,
-    transform 1s ease,
-    visibility 1s;
-
-  cursor: pointer;
-}
-.logo.show {
-  opacity: 1;
-  visibility: visible;
-
-  transform: translateY(0);
-}
-.logo img {
-  width: 100%;
-  display: block;
-}
-
-/* nav */
 #nav {
   height: 52px;
 
@@ -185,48 +149,168 @@ video {
   border-radius: 999px;
   backdrop-filter: blur(10px);
 }
+#nav ul li {
+  position: relative;
+}
+#nav ul li::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 2px;
+  background: #fff;
+  border-radius: 999px;
 
+  opacity: 0;
+  transform: scaleX(0);
+  transition: 0.3s ease;
+}
+#nav ul li:hover::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
 #nav a {
   color: #000000;
   text-decoration: none;
   font-size: 20px;
 }
-
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
+#nav a:hover {
+  color: #fff;
 }
 
 /* artwork */
 .artwork {
   width: 100%;
   min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 150px;
+}
+.art_inner {
+  position: absolute;
+  left: 462px;
+  top: 196px;
+
   display: flex;
   align-items: center;
-  justify-content: center;
-  background: #000;
+  gap: 180px;
 }
-
 .artwork img {
-  width: min(500px, 80vw);
+  width: min(460px, 100vw);
   height: auto;
+}
+.art_text {
+  color: #fff;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.art_title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.art_desc {
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1;
 }
 
 /* banner */
 .banner {
   width: 100%;
-  padding: 120px 40px;
-  background: #000;
-
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.banner_text {
   display: flex;
   flex-direction: column;
-  gap: 80px;
+  justify-content: center;
   align-items: center;
+  color: #fff;
+  margin: 80px 0 80px 0;
+}
+.banner_title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.banner_desc {
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.slider_mask {
+  width: 1400px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.bannerSwiper {
+  width: 100%;
+  overflow: visible;
+  padding: 100px 0;
+  perspective: 1200px;
+}
+.banner .swiper-wrapper {
+  align-items: center;
+  transform-style: preserve-3d;
+}
+.banner .swiper-slide {
+  width: 260px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0.8;
+  filter: blur(4px);
+  transform: scale(0.55) translateY(120px);
+  transition: all 0.6s ease;
+}
+.banner .swiper-slide-active {
+  opacity: 1;
+  filter: blur(0);
+  z-index: 10;
+  transform: scale(1.15) translateY(-20px) translateZ(60px);
+}
+.banner .swiper-slide-prev {
+  z-index: 6;
+  transform: scale(0.9) translateX(40px) translateY(30px) translateZ(-40px);
+  filter: blur(2px);
+  opacity: 0.75;
 }
 
+.banner .swiper-slide-next {
+  z-index: 6;
+  transform: scale(0.9) translateX(-40px) translateY(30px) translateZ(-40px);
+  filter: blur(2px);
+  opacity: 0.75;
+}
+.banner .swiper-slide-prev-prev {
+  z-index: 3;
+  transform: scale(0.78) translateX(60px) translateY(70px) translateZ(-180px);
+  filter: blur(4px);
+  opacity: 0.35;
+}
+
+.banner .swiper-slide-next-next {
+  z-index: 3;
+  transform: scale(0.78) translateX(-60px) translateY(70px) translateZ(-180px);
+  filter: blur(4px);
+  opacity: 0.35;
+}
 .banner img {
-  width: min(1000px, 90vw);
+  width: 300px;
   height: auto;
-  object-fit: contain;
+  display: block;
+}
+.bannerSwiper .swiper-button-next,
+.bannerSwiper .swiper-button-prev {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: #ffffffdc;
 }
