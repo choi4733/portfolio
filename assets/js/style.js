@@ -144,8 +144,86 @@ gsap.fromTo(
     },
   },
 );
+gsap.fromTo(
+  ".art_text",
+  {
+    opacity: 0,
+    y: 100,
+  },
+  {
+    opacity: 1,
+    y: 0,
+    duration: 2.8,
+    ease: "power3.out",
 
-// 스와이퍼 클래스 추가
+    scrollTrigger: {
+      trigger: ".artwork",
+      start: "top 35%",
+      toggleActions: "play none none reverse",
+    },
+  },
+);
+
+// 포토샵
+const eventThumb = document.querySelector(".event_thumb");
+const eventPreview = document.querySelector(".event_preview");
+
+if (eventThumb && eventPreview) {
+  eventThumb.addEventListener("mouseenter", () => {
+    eventPreview.classList.add("show");
+  });
+
+  eventThumb.addEventListener("mousemove", (e) => {
+    eventPreview.style.left = e.clientX + 24 + "px";
+    eventPreview.style.top = e.clientY + 24 + "px";
+  });
+
+  eventThumb.addEventListener("mouseleave", () => {
+    eventPreview.classList.remove("show");
+  });
+}
+
+const eventModal = document.querySelector(".event_modal");
+const eventClose = document.querySelector(".event_close");
+
+if (eventThumb && eventModal && eventClose) {
+  eventThumb.addEventListener("click", () => {
+    eventModal.classList.add("show");
+    eventPreview.classList.remove("show");
+    document.body.style.overflow = "hidden";
+  });
+
+  eventClose.addEventListener("click", () => {
+    eventModal.classList.remove("show");
+    document.body.style.overflow = "";
+  });
+
+  eventModal.addEventListener("click", (e) => {
+    if (e.target === eventModal) {
+      eventModal.classList.remove("show");
+      document.body.style.overflow = "";
+    }
+  });
+}
+const bannerSection = document.querySelector(".banner");
+const bannerInner = document.querySelector(".banner_inner");
+
+if (bannerSection && bannerInner) {
+  gsap.to(bannerInner, {
+    x: () => -(bannerInner.scrollWidth - window.innerWidth),
+    ease: "none",
+    scrollTrigger: {
+      trigger: bannerSection,
+      start: "top top",
+      end: () => "+=" + (bannerInner.scrollWidth - window.innerWidth),
+      pin: true,
+      scrub: 1,
+      invalidateOnRefresh: true,
+      anticipatePin: 1,
+    },
+  });
+}
+// 스와이퍼 클래스 추가 - 애프터이펙트
 swiper.on("setTranslate", () => {
   document.querySelectorAll(".swiper-slide").forEach((slide) => {
     slide.classList.remove("swiper-slide-prev-prev", "swiper-slide-next-next");

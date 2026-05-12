@@ -13,7 +13,7 @@
   <body>
     <section class="intro">
       <video id="introVideo" muted autoplay playsinline preload="auto">
-        <source src="assets/img/intro.mp4" type="video/mp4" />
+        <source src="assets/media/intro.mp4" type="video/mp4" />
       </video>
     </section>
     <!-- intro -->
@@ -33,7 +33,7 @@
 
     <section class="artwork" id="illustrator">
       <div class="art_inner">
-        <img src="assets/img/artwork.svg" alt="" />
+        <img src="assets/img/artwork.svg" alt="일러스트레이터 아트웍1" />
         <div class="art_text">
           <div class="art_title">Illustrator</div>
           <div class="art_desc">Art Work</div>
@@ -47,46 +47,75 @@
         <div class="banner_title">Photoshop</div>
         <div class="banner_desc">Banner</div>
       </div>
-      <div class="slider_mask">
-        <div class="swiper bannerSwiper">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <img src="assets/img/sunsurollBanner.jpg" alt="" />
-            </div>
-            <div class="swiper-slide">
-              <img src="assets/img/madeleineBanner.jpg" alt="" />
-            </div>
-            <div class="swiper-slide">
-              <img src="assets/img/goldBanner.jpg" alt="" />
-            </div>
-            <div class="swiper-slide">
-              <img src="assets/img/yaggwaBanner.jpg" alt="" />
-            </div>
-            <div class="swiper-slide">
-              <img src="assets/img/jeonbyeongBanner.jpg" alt="" />
-            </div>
-            <div class="swiper-slide">
-              <img src="assets/img/sunsurollBanner.jpg" alt="" />
-            </div>
-            <div class="swiper-slide">
-              <img src="assets/img/madeleineBanner.jpg" alt="" />
-            </div>
-            <div class="swiper-slide">
-              <img src="assets/img/goldBanner.jpg" alt="" />
-            </div>
-            <div class="swiper-slide">
-              <img src="assets/img/yaggwaBanner.jpg" alt="" />
-            </div>
-            <div class="swiper-slide">
-              <img src="assets/img/jeonbyeongBanner.jpg" alt="" />
-            </div>
+      <div class="banner_inner">
+        <div class="banner_l">
+          <img src="assets/img/eventpage.jpg" alt="이벤트페이지썸네일" class="event_thumb" />
+
+          <div class="event_preview">
+            <img src="assets/img/eventpage.jpg" alt="이벤트페이지 프리뷰" />
           </div>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
+        </div>
+
+        <div class="banner_r">
+          <img src="assets/img/sunsurollBanner.jpg" alt="성심당 순수롤 배너" />
+          <img src="assets/img/madeleineBanner.jpg" alt="성심당 순수마들렌 배너" />
+          <img src="assets/img/goldBanner.jpg" alt="성심당 골드바 배너" />
+          <img src="assets/img/yaggwaBanner.jpg" alt="성심당 브루스약과 배너" />
+          <img src="assets/img/jeonbyeongBanner.jpg" alt="성심당 브루스전병 배너" />
+        </div>
+      </div>
+
+      <!-- 이벤트페이지 전체보기 -->
+      <div class="event_modal">
+        <button class="event_close">x</button>
+
+        <div class="event_modal_inner">
+          <img src="assets/img/eventpage.jpg" alt="이벤트페이지 전체" />
         </div>
       </div>
     </section>
     <!-- Photoshop Banner -->
+
+    <section class="premiere" id="premiere">
+      <div class="premiere_text">
+        <div class="premiere_title">Premiere Pro</div>
+        <div class="premiere_desc">Media</div>
+      </div>
+      <video src="assets/media/kingsman.mp4"></video>
+      <video src="assets/media/"></video>
+    </section>
+    <!-- Premiere Pro -->
+
+    <section class="after" id="aftereffects">
+      <div class="after_text">
+        <div class="after_title">After Effects</div>
+        <div class="after_desc">Motion Video</div>
+      </div>
+      <div class="after_mask">
+        <div class="swiper afterSwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <video src="assets/media/kinetic.mp4" muted loop playsinline></video>
+            </div>
+            <div class="swiper-slide">
+              <video src="assets/media/logomotion.mp4" muted loop playsinline></video>
+            </div>
+            <div class="swiper-slide">
+              <video src="assets/media/motionIntro.mp4" muted loop playsinline></video>
+            </div>
+            <div class="swiper-slide">
+              <video src="assets/media/tension.mp4" muted loop playsinline></video>
+            </div>
+            <div class="swiper-slide">
+              <video src="assets/media/epikHigh.mp4" muted loop playsinline></video>
+            </div>
+          </div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        </div>
+      </div>
+    </section>
+    <!-- After Effects -->
 
     <div class="cursor">
       <div class="circle circle1">
@@ -103,24 +132,44 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollTrigger.min.js"></script>
     <script src="assets/js/style.js"></script>
     <script>
-      var swiper = new Swiper(".bannerSwiper", {
-        slidesPerView: 5.5,
+      // After Effects
+      const afterSwiper = new Swiper(".afterSwiper", {
+        slidesPerView: 3,
         centeredSlides: true,
-        loop: true,
-        speed: 700,
         spaceBetween: -60,
-
-        autoplay: {
-          delay: 2500,
-          disableOnInteraction: false,
-        },
+        loop: true,
+        speed: 800,
 
         navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
+          nextEl: ".afterSwiper .swiper-button-next",
+          prevEl: ".afterSwiper .swiper-button-prev",
         },
 
-        watchSlidesProgress: true,
+        on: {
+          init(swiper) {
+            swiper.slides.forEach((slide) => {
+              const video = slide.querySelector("video");
+              video.pause();
+            });
+
+            const activeVideo = swiper.slides[swiper.activeIndex].querySelector("video");
+
+            activeVideo.play();
+          },
+
+          slideChangeTransitionEnd(swiper) {
+            swiper.slides.forEach((slide) => {
+              const video = slide.querySelector("video");
+
+              video.pause();
+              video.currentTime = 0;
+            });
+
+            const activeVideo = swiper.slides[swiper.activeIndex].querySelector("video");
+
+            activeVideo.play();
+          },
+        },
       });
     </script>
   </body>
