@@ -157,7 +157,13 @@ video {
 #nav a:hover {
   color: #fff;
 }
-
+#nav ul li.active::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+#nav ul li.active a {
+  color: #fff;
+}
 /* intro */
 .intro {
   width: 100%;
@@ -237,7 +243,7 @@ video {
   width: 100%;
   min-height: 100vh;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow: visible;
   margin: 0 auto;
 }
 .banner_text {
@@ -246,7 +252,7 @@ video {
   justify-content: center;
   align-items: center;
   color: #fff;
-  margin: 80px 0 80px 0;
+  margin: 80px 0 60px 0;
 }
 .banner_title {
   font-size: 1.5rem;
@@ -258,21 +264,41 @@ video {
   font-weight: 700;
   line-height: 1;
 }
+.banner_inner {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  gap: 20px;
+
+  width: max-content;
+  padding: 60px 12vw 220px;
+}
 .banner img {
   width: 300px;
   height: auto;
   display: block;
-}
-.banner_inner {
-  /* display: flex;
-  justify-content: flex-start;
-  gap: 40px; */
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 60px;
 
-  width: max-content;
-  padding: 0 10vw 120px;
+  border: 1px solid rgba(180, 230, 255, 0.45);
+  border-radius: 10px;
+
+  box-shadow:
+    0 0 12px rgba(120, 210, 255, 0.45),
+    0 0 28px rgba(120, 210, 255, 0.28),
+    0 0 55px rgba(120, 210, 255, 0.16);
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+/* 반짝 살아나는 느낌 */
+.banner img:hover {
+  transform: none;
+
+  box-shadow:
+    0 0 18px rgba(140, 230, 255, 0.65),
+    0 0 42px rgba(140, 230, 255, 0.38),
+    0 0 80px rgba(140, 230, 255, 0.22);
 }
 
 /* 배너 왼쪽 썸네일 및 프리뷰 */
@@ -280,8 +306,8 @@ video {
   position: relative;
 }
 .banner_l > .event_thumb {
-  width: 400px;
-  height: 600px;
+  width: 340px;
+  height: 510px;
   object-fit: cover;
   object-position: top;
   display: block;
@@ -315,27 +341,35 @@ video {
 .event_modal {
   position: fixed;
   inset: 0;
-
-  background: rgba(0, 0, 0, 0.88);
+  background: rgba(0, 0, 0, 0.486);
   backdrop-filter: blur(10px);
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   opacity: 0;
   visibility: hidden;
-
   transition: 0.35s ease;
-
   z-index: 99999;
-  border-radius: none;
+}
+.event_modal::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  pointer-events: none;
 }
 .event_modal.show {
   opacity: 1;
   visibility: visible;
 }
 .event_modal_inner {
+  position: relative;
+  z-index: 2;
+
   width: 500px;
   max-height: 90vh;
   overflow-y: auto;
@@ -367,11 +401,11 @@ video {
 /* banner_r */
 .banner_r {
   display: flex;
+  align-items: flex-start;
   gap: 60px;
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow: visible;
   scroll-behavior: smooth;
-  padding-bottom: 10px;
+  padding: 0px 40px 160px;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -379,12 +413,11 @@ video {
   display: none;
 }
 .banner_r img {
-  flex-shrink: 0;
-
-  width: 400px;
-  height: 600px;
-
+  width: 340px;
+  height: 510px;
   object-fit: cover;
+  object-position: top;
+  display: block;
 }
 
 /* Premiere Pro */
@@ -395,6 +428,7 @@ video {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 80px;
 }
 .premiere_title {
   font-size: 1.5rem;
@@ -406,7 +440,15 @@ video {
   font-weight: 700;
   line-height: 1;
 }
+.premiere video {
+  width: 1080px; /* 원하는 크기 */
+  height: auto;
 
+  display: block;
+
+  border-radius: 24px;
+  object-fit: cover;
+}
 /* After Effects */
 .after {
   width: 100%;
