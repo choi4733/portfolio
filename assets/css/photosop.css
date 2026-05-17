@@ -1,0 +1,124 @@
+/* banner */
+.banner_inner {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+
+  padding: 30px;
+  box-sizing: border-box;
+
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.04);
+
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  cursor: grab;
+}
+.banner_inner::-webkit-scrollbar {
+  display: none;
+}
+.banner_inner:active {
+  cursor: grabbing;
+}
+.banner_l {
+  position: relative;
+  flex-shrink: 0;
+}
+.banner_r {
+  display: flex;
+  gap: 32px;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+}
+.banner_l > .event_thumb,
+.banner_r img {
+  width: 220px;
+  height: 300px;
+  flex-shrink: 0;
+
+  object-fit: cover;
+  object-position: top;
+
+  border-radius: 10px;
+  border: 1px solid rgba(180, 230, 255, 0.45);
+
+  box-shadow:
+    0 0 12px rgba(120, 210, 255, 0.35),
+    0 0 28px rgba(120, 210, 255, 0.2);
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+.banner_l > .event_thumb:hover,
+.banner_r img:hover {
+  transform: translateY(-10px) scale(1.03);
+
+  box-shadow:
+    0 0 18px rgba(140, 230, 255, 0.65),
+    0 0 42px rgba(140, 230, 255, 0.38),
+    0 0 80px rgba(140, 230, 255, 0.22);
+}
+
+.event_preview {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 120px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 9999;
+  border: 2px solid #fff;
+}
+
+.event_preview.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.event_modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(18px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.35s ease;
+  z-index: 99999;
+}
+
+.event_modal.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.event_modal_inner {
+  width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.event_modal_inner::-webkit-scrollbar {
+  display: none;
+}
+
+.event_close {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  background: none;
+  border: 0;
+  color: #fff;
+  font-size: 40px;
+  cursor: pointer;
+}
