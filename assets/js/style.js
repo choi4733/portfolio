@@ -66,10 +66,7 @@ function activeNav() {
 
     const rect = targetSection.getBoundingClientRect();
 
-    if (
-      rect.top <= window.innerHeight / 2 &&
-      rect.bottom >= window.innerHeight / 2
-    ) {
+    if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
       currentId = targetId;
     }
   });
@@ -157,17 +154,15 @@ function cursorAnimation() {
 
 cursorAnimation();
 
-document
-  .querySelectorAll("a, button, #nav li, video, img")
-  .forEach((target) => {
-    target.addEventListener("mouseenter", () => {
-      cursor?.classList.add("hover");
-    });
-
-    target.addEventListener("mouseleave", () => {
-      cursor?.classList.remove("hover");
-    });
+document.querySelectorAll("a, button, #nav li, video, img").forEach((target) => {
+  target.addEventListener("mouseenter", () => {
+    cursor?.classList.add("hover");
   });
+
+  target.addEventListener("mouseleave", () => {
+    cursor?.classList.remove("hover");
+  });
+});
 
 /* gsap animation */
 if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
@@ -219,9 +214,7 @@ if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
 }
 
 /* photoshop preview / modal */
-const bannerImages = document.querySelectorAll(
-  ".banner_l > img, .banner_r img",
-);
+const bannerImages = document.querySelectorAll(".banner_l > img, .banner_r img");
 const eventPreview = document.querySelector(".event_preview");
 const eventModal = document.querySelector(".event_modal");
 const eventModalImg = document.querySelector(".event_modal_inner img");
@@ -368,8 +361,7 @@ if (afterSwiperEl && typeof Swiper !== "undefined") {
       video.currentTime = 0;
     });
 
-    const activeVideo =
-      swiper.slides[swiper.activeIndex]?.querySelector("video");
+    const activeVideo = swiper.slides[swiper.activeIndex]?.querySelector("video");
 
     activeVideo?.play();
   }
@@ -414,3 +406,21 @@ if (webSwiperEl && typeof Swiper !== "undefined") {
     },
   });
 }
+
+// top button
+const topBtn = document.querySelector(".top_btn");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    topBtn.classList.add("show");
+  } else {
+    topBtn.classList.remove("show");
+  }
+});
+
+topBtn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+});

@@ -181,47 +181,68 @@ a {
 
 /* 공통 섹션 */
 .portfolio_wrap {
-  width: min(1400px, 92%);
+  width: min(1600px, calc(100% - 120px));
   margin: 0 auto;
 }
-
 .portfolio_section {
+  width: 100%;
   display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 60px;
+  grid-template-columns: 340px 1fr;
+  gap: 80px;
   padding: 110px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.288);
 }
 
 .section_title_box {
+  grid-column: 1;
   color: #fff;
 }
-
 .section_title_box span {
   display: block;
   color: #6cf3ff;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 14px;
 }
-
 .section_title_box h2 {
   font-size: 3.5rem;
   font-weight: 700;
   line-height: 1;
   margin-bottom: 24px;
 }
+.section_title_box h2 span {
+  display: inline-block;
+  position: relative;
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+}
 
-.section_title_box h2::after {
+.section_title_box h2 span::after {
   content: "";
-  display: block;
-  width: 34px;
+  position: absolute;
+  left: 0;
+  bottom: -22px;
+  width: 100%;
   height: 2px;
   background: #6cf3ff;
-  margin-top: 22px;
 }
 
 .section_title_box p {
   color: rgba(255, 255, 255, 0.75);
   line-height: 1.8;
+  font-size: 1rem;
+  word-break: keep-all;
+}
+.section_content,
+.art_inner,
+.banner_inner,
+.premiere_inner,
+.after_inner,
+.web_inner {
+  grid-column: 2;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }

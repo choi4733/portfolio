@@ -1,0 +1,110 @@
+/* About */
+.about {
+  padding: 110px 0 70px;
+}
+
+.about_inner {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  overflow: hidden;
+}
+
+.about_profile {
+  padding: 28px 44px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.about_info li {
+  display: grid;
+  grid-template-columns: 24px 90px 1fr;
+  align-items: center;
+  gap: 18px;
+
+  margin-bottom: 22px;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.about_info li:last-child {
+  margin-bottom: 0;
+}
+
+.about_info span {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.about_info span:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about_info span i {
+  color: #6cf3ff;
+  font-size: 1rem;
+}
+
+.about_info strong {
+  font-weight: 500;
+}
+
+.about_skill {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px 34px;
+  padding: 24px 44px;
+}
+
+.skill_item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.9rem;
+}
+
+.skill_item img {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+}
+
+/* top button */
+.top_btn {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  z-index: 200;
+
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.08);
+  color: #6cf3ff;
+
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: 0.3s ease;
+}
+
+.top_btn.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}

@@ -1,8 +1,8 @@
 /* premiere */
 .premiere {
-  width: min(1300px, calc(100% - 70px));
+  width: 100%;
   margin: 0 auto;
-  padding: 120px 0 0;
+  padding: 120px 0 80px 0;
   box-sizing: border-box;
 
   display: grid;
@@ -61,8 +61,13 @@
 
   background: #00ffff;
 }
-
 /* card */
+
+.premiere_inner {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
 .premiere_item {
   grid-column: 2;
   min-height: 330px;
@@ -107,9 +112,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  background:
-    radial-gradient(circle at top, rgba(0, 255, 255, 0.08), transparent 60%),
-    rgba(255, 255, 255, 0.02);
+  background: radial-gradient(circle at top, rgba(0, 255, 255, 0.08), transparent 60%), rgba(255, 255, 255, 0.02);
 }
 .premiere_label {
   margin-bottom: 14px;
@@ -128,8 +131,9 @@
 .premiere_desc_text {
   margin-bottom: 22px;
   color: rgba(255, 255, 255, 0.82);
-  font-size: 0.95rem;
+  font-size: 1rem;
   line-height: 1.7;
+  word-break: keep-all;
 }
 
 /* meta */
@@ -137,8 +141,6 @@
   list-style: none;
   padding: 18px 0 0;
   margin: 0;
-
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .premiere_meta li {
