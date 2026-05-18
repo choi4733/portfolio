@@ -4,14 +4,31 @@ const artwork = document.querySelector(".artwork");
 const navLinks = document.querySelectorAll("#nav a");
 
 let lastScrollY = 0;
-let isIntroPlaying = false;
 let isAutoScrolling = false;
+
+/* refresh scroll reset */
+if ("scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
+}
+
+window.addEventListener("beforeunload", () => {
+  window.scrollTo(0, 0);
+});
+
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
+  }, 10);
+});
 
 /* intro */
 function playIntroVideo() {
-  if (!introVideo || isIntroPlaying) return;
+  if (!introVideo) return;
 
-  isIntroPlaying = true;
   nav?.classList.remove("show");
 
   introVideo.classList.add("show");
@@ -23,33 +40,28 @@ function playIntroVideo() {
 }
 
 window.addEventListener("load", () => {
-  if (window.scrollY > 50) return;
+  if (!introVideo) return;
 
-  setTimeout(playIntroVideo, 500);
+  setTimeout(() => {
+    playIntroVideo();
+  }, 500);
 });
 
 if (introVideo && artwork) {
-  introVideo.addEventListener(
-    "ended",
-    () => {
-      if (window.scrollY > 100) return;
+  introVideo.addEventListener("ended", () => {
+    isAutoScrolling = true;
 
-      isIntroPlaying = false;
-      isAutoScrolling = true;
+    window.scrollTo({
+      top: artwork.offsetTop,
+      behavior: "smooth",
+    });
 
-      window.scrollTo({
-        top: artwork.offsetTop,
-        behavior: "smooth",
-      });
-
-      setTimeout(() => {
-        isAutoScrolling = false;
-        nav?.classList.add("show");
-        activeNav();
-      }, 1200);
-    },
-    { once: true },
-  );
+    setTimeout(() => {
+      isAutoScrolling = false;
+      nav?.classList.add("show");
+      activeNav();
+    }, 1200);
+  });
 }
 
 /* nav active */
@@ -362,7 +374,6 @@ if (afterSwiperEl && typeof Swiper !== "undefined") {
     });
 
     const activeVideo = swiper.slides[swiper.activeIndex]?.querySelector("video");
-
     activeVideo?.play();
   }
 }
@@ -407,20 +418,22 @@ if (webSwiperEl && typeof Swiper !== "undefined") {
   });
 }
 
-// top button
+/* top button */
 const topBtn = document.querySelector(".top_btn");
 
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 300) {
-    topBtn.classList.add("show");
-  } else {
-    topBtn.classList.remove("show");
-  }
-});
-
-topBtn.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
+if (topBtn) {
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+      topBtn.classList.add("show");
+    } else {
+      topBtn.classList.remove("show");
+    }
   });
-});
+
+  topBtn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
+}
