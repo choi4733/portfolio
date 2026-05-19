@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" href="assets/css/illustrator.css" />
-    <link rel="stylesheet" href="assets/css/photosop.css" />
+    <link rel="stylesheet" href="assets/css/photoshop.css" />
     <link rel="stylesheet" href="assets/css/premiere.css" />
     <link rel="stylesheet" href="assets/css/after.css" />
     <link rel="stylesheet" href="assets/css/web.css" />
@@ -48,7 +48,10 @@
         </div>
 
         <div class="section_content art_inner">
-          <img src="assets/img/artwork.svg" alt="일러스트레이터 아트웍" />
+          <img class="art_color" src="assets/img/artwork.svg" alt="일러스트레이터 아트웍" />
+          <img class="art_line" src="assets/img/artwokrpen.svg" alt="일러스트레이터 아트웍" />
+
+          <!-- <img src="assets/img/artwork2.svg" alt="일러스트레이터 아트웍" /> -->
         </div>
       </section>
       <!-- Illustrator Artwork -->
@@ -122,15 +125,16 @@
           <!-- 팀 프로젝트 -->
           <div class="premiere_item">
             <div class="premiere_video_box">
-              <video src="assets/media/teamproject.mp4" controls></video>
-            </div>
+              <img src="assets/img/teamtumb.jPG" alt="팀프로젝트 썸네일" class="premiere_thumb" />
 
+              <video src="assets/media/teamproject.mp4" controls class="premiere_video"></video>
+            </div>
             <div class="premiere_info">
               <p class="premiere_label">02 팀 프로젝트</p>
               <h3>영상 팀 프로젝트</h3>
 
               <p class="premiere_desc_text">
-                20분 분량의 팀 프로젝트 영상입니다.
+                7분 분량의 팀 프로젝트 영상입니다.
                 <br />
                 기획, 촬영, 편집까지 팀원들과 함께 작업하여 스토리텔링과 편집 완성도를 높였습니다.
               </p>
@@ -156,7 +160,7 @@
           <h2><span>M</span>otion Video</h2>
           <p>애프터 이펙트를 활용한 모션그래픽 작업물입니다.</p>
         </div>
-        <div class="after_mask">
+        <div class="section_content after_mask">
           <div class="swiper afterSwiper">
             <div class="swiper-wrapper">
               <div class="swiper-slide">
@@ -167,9 +171,6 @@
               </div>
               <div class="swiper-slide">
                 <video src="assets/media/motionIntro.mp4" muted loop playsinline></video>
-              </div>
-              <div class="swiper-slide">
-                <video src="assets/media/tension.mp4" muted loop playsinline></video>
               </div>
               <div class="swiper-slide">
                 <video src="assets/media/epikHigh.mp4" muted loop playsinline></video>
@@ -317,15 +318,15 @@
               <span>After Effects</span>
             </div>
             <div class="skill_item">
-              <img src="assets/img/icon_html.png" alt="HTML" />
+              <img src="assets/img/html.png" alt="HTML" />
               <span>HTML</span>
             </div>
             <div class="skill_item">
-              <img src="assets/img/icon_css.png" alt="CSS" />
+              <img src="assets/img/css.png" alt="CSS" class="css_icon" />
               <span>CSS</span>
             </div>
             <div class="skill_item">
-              <img src="assets/img/icon_js.png" alt="JavaScript" />
+              <img src="assets/img/js.png" alt="JavaScript" />
               <span>JavaScript</span>
             </div>
           </div>

@@ -6,33 +6,15 @@ const navLinks = document.querySelectorAll("#nav a");
 let lastScrollY = 0;
 let isAutoScrolling = false;
 
-/* refresh scroll reset */
-if ("scrollRestoration" in history) {
-  history.scrollRestoration = "manual";
-}
-
-window.addEventListener("beforeunload", () => {
-  window.scrollTo(0, 0);
-});
-
-window.addEventListener("load", () => {
-  setTimeout(() => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "instant",
-    });
-  }, 10);
-});
-
-/* intro */
+/* =========================
+   intro
+========================= */
 function playIntroVideo() {
   if (!introVideo) return;
 
   nav?.classList.remove("show");
 
   introVideo.classList.add("show");
-  introVideo.currentTime = 0;
 
   introVideo.play().catch((err) => {
     console.log("video autoplay error:", err);
@@ -47,8 +29,16 @@ window.addEventListener("load", () => {
   }, 500);
 });
 
+/* intro 끝나면 artwork로 이동 */
 if (introVideo && artwork) {
   introVideo.addEventListener("ended", () => {
+    /* 이미 스크롤한 상태면 자동이동 막기 */
+    if (window.scrollY > 100) {
+      nav?.classList.add("show");
+      activeNav();
+      return;
+    }
+
     isAutoScrolling = true;
 
     window.scrollTo({
@@ -64,7 +54,9 @@ if (introVideo && artwork) {
   });
 }
 
-/* nav active */
+/* =========================
+   nav active
+========================= */
 function activeNav() {
   let currentId = "";
 
@@ -103,7 +95,9 @@ navLinks.forEach((link) => {
 window.addEventListener("load", activeNav);
 window.addEventListener("scroll", activeNav);
 
-/* nav show / hide */
+/* =========================
+   nav show / hide
+========================= */
 window.addEventListener("scroll", () => {
   if (!nav || isAutoScrolling) return;
 
@@ -124,7 +118,9 @@ window.addEventListener("scroll", () => {
   lastScrollY = currentScrollY;
 });
 
-/* cursor */
+/* =========================
+   cursor
+========================= */
 const cursor = document.querySelector(".cursor");
 const circle1 = document.querySelector(".circle1");
 const circle2 = document.querySelector(".circle2");
@@ -176,7 +172,9 @@ document.querySelectorAll("a, button, #nav li, video, img").forEach((target) => 
   });
 });
 
-/* gsap animation */
+/* =========================
+   gsap animation
+========================= */
 if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 
@@ -196,6 +194,7 @@ if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
         y: 0,
         duration: 1,
         ease: "power3.out",
+
         scrollTrigger: {
           trigger: section,
           start: "top 75%",
@@ -216,6 +215,7 @@ if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
       y: 0,
       duration: 1.2,
       ease: "power3.out",
+
       scrollTrigger: {
         trigger: ".artwork",
         start: "top 60%",
@@ -225,8 +225,11 @@ if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
   );
 }
 
-/* photoshop preview / modal */
+/* =========================
+   photoshop preview / modal
+========================= */
 const bannerImages = document.querySelectorAll(".banner_l > img, .banner_r img");
+
 const eventPreview = document.querySelector(".event_preview");
 const eventModal = document.querySelector(".event_modal");
 const eventModalImg = document.querySelector(".event_modal_inner img");
@@ -237,6 +240,7 @@ bannerImages.forEach((img) => {
     if (!eventPreview) return;
 
     const previewImg = eventPreview.querySelector("img");
+
     previewImg.src = img.src;
     previewImg.alt = img.alt;
 
@@ -261,7 +265,9 @@ bannerImages.forEach((img) => {
     eventModalImg.alt = img.alt;
 
     eventModal.classList.add("show");
+
     eventPreview?.classList.remove("show");
+
     document.body.style.overflow = "hidden";
   });
 });
@@ -279,14 +285,21 @@ eventModal?.addEventListener("click", (e) => {
   }
 });
 
-/* banner horizontal wheel scroll */
+/* =========================
+   banner horizontal scroll
+========================= */
 const bannerInner = document.querySelector(".banner_inner");
 
 if (bannerInner) {
-  bannerInner.addEventListener("wheel", (e) => {
-    e.preventDefault();
-    bannerInner.scrollLeft += e.deltaY;
-  });
+  bannerInner.addEventListener(
+    "wheel",
+    (e) => {
+      e.preventDefault();
+
+      bannerInner.scrollLeft += e.deltaY;
+    },
+    { passive: false },
+  );
 
   let isDown = false;
   let startX = 0;
@@ -294,6 +307,7 @@ if (bannerInner) {
 
   bannerInner.addEventListener("mousedown", (e) => {
     isDown = true;
+
     startX = e.pageX - bannerInner.offsetLeft;
     scrollLeft = bannerInner.scrollLeft;
   });
@@ -318,12 +332,16 @@ if (bannerInner) {
   });
 }
 
-/* After Effects Swiper */
+/* =========================
+   After Effects Swiper
+========================= */
 const afterSwiperEl = document.querySelector(".afterSwiper");
 
 if (afterSwiperEl && typeof Swiper !== "undefined") {
   const pagination = document.createElement("div");
+
   pagination.className = "swiper-pagination";
+
   afterSwiperEl.appendChild(pagination);
 
   const afterSwiper = new Swiper(".afterSwiper", {
@@ -346,9 +364,11 @@ if (afterSwiperEl && typeof Swiper !== "undefined") {
       0: {
         slidesPerView: 1,
       },
+
       600: {
         slidesPerView: 2,
       },
+
       900: {
         slidesPerView: 3,
       },
@@ -358,6 +378,7 @@ if (afterSwiperEl && typeof Swiper !== "undefined") {
       init(swiper) {
         playActiveAfterVideo(swiper);
       },
+
       slideChangeTransitionEnd(swiper) {
         playActiveAfterVideo(swiper);
       },
@@ -367,6 +388,7 @@ if (afterSwiperEl && typeof Swiper !== "undefined") {
   function playActiveAfterVideo(swiper) {
     swiper.slides.forEach((slide) => {
       const video = slide.querySelector("video");
+
       if (!video) return;
 
       video.pause();
@@ -374,16 +396,21 @@ if (afterSwiperEl && typeof Swiper !== "undefined") {
     });
 
     const activeVideo = swiper.slides[swiper.activeIndex]?.querySelector("video");
-    activeVideo?.play();
+
+    activeVideo?.play().catch(() => {});
   }
 }
 
-/* Web Swiper */
+/* =========================
+   Web Swiper
+========================= */
 const webSwiperEl = document.querySelector(".webSwiper");
 
 if (webSwiperEl && typeof Swiper !== "undefined") {
   const pagination = document.createElement("div");
+
   pagination.className = "swiper-pagination";
+
   webSwiperEl.appendChild(pagination);
 
   new Swiper(".webSwiper", {
@@ -418,7 +445,9 @@ if (webSwiperEl && typeof Swiper !== "undefined") {
   });
 }
 
-/* top button */
+/* =========================
+   top button
+========================= */
 const topBtn = document.querySelector(".top_btn");
 
 if (topBtn) {

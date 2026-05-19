@@ -2,31 +2,42 @@
 .about {
   padding: 110px 0 70px;
 }
-
+.about .section_title_box h2 > span::after {
+  left: -4px;
+  width: calc(100% + 7px);
+  height: 3px;
+  bottom: -16px;
+}
 .about_inner {
   display: grid;
   grid-template-columns: 1fr 1.4fr;
 
-  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.04);
   overflow: hidden;
 }
 
 .about_profile {
-  padding: 28px 44px;
+  padding: 40px 50px;
   border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+.about_info {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
 }
 
 .about_info li {
   display: grid;
-  grid-template-columns: 24px 90px 1fr;
+  grid-template-columns: 40px 110px 1fr;
   align-items: center;
-  gap: 18px;
 
-  margin-bottom: 22px;
+  gap: 24px;
+
+  margin-bottom: 0;
+
   color: #fff;
-  font-size: 1rem;
+  font-size: 1.08rem;
 }
 
 .about_info li:last-child {
@@ -38,6 +49,9 @@
 }
 
 .about_info span:first-child {
+  width: 40px;
+  height: 40px;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,11 +59,16 @@
 
 .about_info span i {
   color: #6cf3ff;
-  font-size: 1rem;
+  font-size: 1.15rem;
 }
-
-.about_info strong {
+.about_info span:nth-child(2) {
+  color: rgba(255, 255, 255, 0.72);
   font-weight: 500;
+}
+.about_info strong {
+  font-size: 1.12rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
 .about_skill {
@@ -77,8 +96,11 @@
   border-radius: 10px;
   padding: 10px;
 }
-
-/* top button */
+.css_icon {
+  width: 68px !important;
+  height: 68px !important;
+  padding: 6px !important;
+} /* top button */
 .top_btn {
   position: fixed;
   right: 28px;
@@ -105,7 +127,10 @@
   transform: translateY(12px);
   transition: 0.3s ease;
 }
-
+.top_btn:hover {
+  background: #00ffff;
+  color: #001b1d;
+}
 .top_btn.show {
   opacity: 1;
   visibility: visible;

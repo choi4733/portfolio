@@ -10,14 +10,13 @@
   white-space: nowrap;
 }
 .art_inner {
-  /* width: min(1200px, calc(100% - 40px)); */
   margin: 0 auto;
   width: 100%;
 
   display: flex;
   justify-content: center;
   align-items: center;
-
+  gap: 60px;
   position: relative;
 }
 .art_inner img {
@@ -27,10 +26,20 @@
 
   box-shadow: 17px 18px 40px #00000050;
 
-  transform: rotate(-4deg);
+  /* transform: rotate(-4deg); */
   transition:
     transform 0.5s ease,
     box-shadow 0.5s ease;
+}
+.art_color {
+  position: relative;
+  z-index: 1;
+}
+
+.art_line {
+  position: relative;
+  z-index: 5;
+  background: #fff;
 }
 
 /* 뒤 배경 느낌 */

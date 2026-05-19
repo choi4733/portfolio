@@ -8,17 +8,21 @@
   position: relative;
   margin-top: 80px;
 }
-
+.after .section_title_box h2 > span::after {
+  left: -4px;
+  width: calc(100% + 7px);
+  height: 3px;
+  bottom: -16px;
+  background: #6cf3ff;
+}
 .after_mask {
   grid-column: 2;
   width: 100%;
   margin: 0;
   /* width: 95%; */
-  margin: 0;
   padding: 14px;
   box-sizing: border-box;
 
-  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(10px);
@@ -38,7 +42,7 @@
 }
 
 .afterSwiper .swiper-slide {
-  height: 150px;
+  height: 200px;
   opacity: 1;
   transform: none;
   transition: 0.4s ease;
@@ -52,12 +56,6 @@
   display: block;
   object-fit: cover;
   border-radius: 6px;
-}
-
-/* 기존 화살표 숨김 */
-.afterSwiper .swiper-button-prev,
-.afterSwiper .swiper-button-next {
-  display: none;
 }
 
 /* 페이지 점 */

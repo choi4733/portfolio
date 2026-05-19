@@ -188,7 +188,7 @@ a {
   width: 100%;
   display: grid;
   grid-template-columns: 340px 1fr;
-  gap: 80px;
+  gap: 60px;
   padding: 110px 0;
   border-bottom: 1.5px solid rgba(255, 255, 255, 0.288);
 }
@@ -197,7 +197,7 @@ a {
   grid-column: 1;
   color: #fff;
 }
-.section_title_box span {
+.section_title_box > span {
   display: block;
   color: #6cf3ff;
   font-size: 1.2rem;
@@ -209,21 +209,25 @@ a {
   font-weight: 700;
   line-height: 1;
   margin-bottom: 24px;
+  white-space: nowrap;
 }
 .section_title_box h2 span {
   display: inline-block;
   position: relative;
-  font-size: 3.5rem;
-  font-weight: 700;
-  line-height: 1;
   color: #fff;
+  /* font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1; */
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
 }
 
 .section_title_box h2 span::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -22px;
+  bottom: -15px;
   width: 100%;
   height: 2px;
   background: #6cf3ff;
