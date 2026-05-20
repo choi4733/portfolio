@@ -6,6 +6,9 @@
   box-sizing: border-box;
   overflow: hidden;
 }
+.artwork .section_title_box {
+  padding-top: 120px;
+}
 .section_title_box h2 {
   white-space: nowrap;
 }

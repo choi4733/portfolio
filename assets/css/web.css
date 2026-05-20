@@ -36,10 +36,13 @@
 }
 
 /* thumbnail */
+.first .web_img {
+  height: 365px;
+}
 .web_img {
   width: 100%;
 
-  height: 334px;
+  height: 340px;
 
   border-radius: 12px;
 

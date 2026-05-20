@@ -180,6 +180,15 @@
             <div class="swiper-button-next"></div>
           </div>
         </div>
+
+        <!-- after modal -->
+        <div class="after_modal">
+          <button class="after_close">×</button>
+
+          <div class="after_modal_inner">
+            <video controls playsinline></video>
+          </div>
+        </div>
       </section>
       <!-- After Effects -->
 
@@ -192,10 +201,10 @@
 
         <!-- 개인 작업 -->
         <div class="section_content web_inner">
-          <div class="web_item">
-            <div class="web_img">
+          <div class="web_item first">
+            <a href="https://choi4733.github.io/Movie_Site/" target="_blank" class="web_img">
               <img src="assets/img/webPortfolio1.png" alt="포트폴리오 사이트" />
-            </div>
+            </a>
 
             <div class="web_info">
               <p class="web_label">01 개인 작업</p>
@@ -231,9 +240,9 @@
 
         <!-- 팀 프로젝트 -->
         <div class="web_item">
-          <div class="web_img">
+          <a href="https://home-start-eight.vercel.app/index.html" target="_blank" class="web_img">
             <img src="assets/img/homeStart.png" alt="HomeStart" />
-          </div>
+          </a>
 
           <div class="web_info">
             <p class="web_label">02 팀 프로젝트</p>
@@ -341,7 +350,7 @@
     </button>
     <!-- top button -->
 
-    <div class="cursor">
+    <div class="cursor" aria-hidden="true">
       <div class="circle circle1">
         <span>SEE</span>
       </div>

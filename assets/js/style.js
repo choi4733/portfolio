@@ -6,14 +6,11 @@ const navLinks = document.querySelectorAll("#nav a");
 let lastScrollY = 0;
 let isAutoScrolling = false;
 
-/* =========================
-   intro
-========================= */
+/* intro */
 function playIntroVideo() {
   if (!introVideo) return;
 
   nav?.classList.remove("show");
-
   introVideo.classList.add("show");
 
   introVideo.play().catch((err) => {
@@ -22,17 +19,11 @@ function playIntroVideo() {
 }
 
 window.addEventListener("load", () => {
-  if (!introVideo) return;
-
-  setTimeout(() => {
-    playIntroVideo();
-  }, 500);
+  setTimeout(playIntroVideo, 500);
 });
 
-/* intro 끝나면 artwork로 이동 */
 if (introVideo && artwork) {
   introVideo.addEventListener("ended", () => {
-    /* 이미 스크롤한 상태면 자동이동 막기 */
     if (window.scrollY > 100) {
       nav?.classList.add("show");
       activeNav();
@@ -54,9 +45,7 @@ if (introVideo && artwork) {
   });
 }
 
-/* =========================
-   nav active
-========================= */
+/* nav active */
 function activeNav() {
   let currentId = "";
 
@@ -95,9 +84,7 @@ navLinks.forEach((link) => {
 window.addEventListener("load", activeNav);
 window.addEventListener("scroll", activeNav);
 
-/* =========================
-   nav show / hide
-========================= */
+/* nav show / hide */
 window.addEventListener("scroll", () => {
   if (!nav || isAutoScrolling) return;
 
@@ -118,9 +105,7 @@ window.addEventListener("scroll", () => {
   lastScrollY = currentScrollY;
 });
 
-/* =========================
-   cursor
-========================= */
+/* cursor */
 const cursor = document.querySelector(".cursor");
 const circle1 = document.querySelector(".circle1");
 const circle2 = document.querySelector(".circle2");
@@ -164,6 +149,9 @@ cursorAnimation();
 
 document.querySelectorAll("a, button, #nav li, video, img").forEach((target) => {
   target.addEventListener("mouseenter", () => {
+    if (target.closest(".intro")) return;
+    if (target.closest(".art_inner")) return;
+
     cursor?.classList.add("hover");
   });
 
@@ -172,9 +160,7 @@ document.querySelectorAll("a, button, #nav li, video, img").forEach((target) => 
   });
 });
 
-/* =========================
-   gsap animation
-========================= */
+/* gsap animation */
 if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 
@@ -225,9 +211,7 @@ if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
   );
 }
 
-/* =========================
-   photoshop preview / modal
-========================= */
+/* photoshop preview / modal */
 const bannerImages = document.querySelectorAll(".banner_l > img, .banner_r img");
 
 const eventPreview = document.querySelector(".event_preview");
@@ -265,7 +249,6 @@ bannerImages.forEach((img) => {
     eventModalImg.alt = img.alt;
 
     eventModal.classList.add("show");
-
     eventPreview?.classList.remove("show");
 
     document.body.style.overflow = "hidden";
@@ -285,9 +268,7 @@ eventModal?.addEventListener("click", (e) => {
   }
 });
 
-/* =========================
-   banner horizontal scroll
-========================= */
+/* banner horizontal scroll */
 const bannerInner = document.querySelector(".banner_inner");
 
 if (bannerInner) {
@@ -295,7 +276,6 @@ if (bannerInner) {
     "wheel",
     (e) => {
       e.preventDefault();
-
       bannerInner.scrollLeft += e.deltaY;
     },
     { passive: false },
@@ -307,7 +287,6 @@ if (bannerInner) {
 
   bannerInner.addEventListener("mousedown", (e) => {
     isDown = true;
-
     startX = e.pageX - bannerInner.offsetLeft;
     scrollLeft = bannerInner.scrollLeft;
   });
@@ -332,28 +311,24 @@ if (bannerInner) {
   });
 }
 
-/* =========================
-   After Effects Swiper
-========================= */
+/* After Effects Swiper */
 const afterSwiperEl = document.querySelector(".afterSwiper");
 
 if (afterSwiperEl && typeof Swiper !== "undefined") {
   const pagination = document.createElement("div");
-
   pagination.className = "swiper-pagination";
-
   afterSwiperEl.appendChild(pagination);
 
-  const afterSwiper = new Swiper(".afterSwiper", {
+  new Swiper(".afterSwiper", {
     slidesPerView: 3,
     spaceBetween: 10,
-    loop: true,
-    speed: 800,
 
-    autoplay: {
-      delay: 2500,
-      disableOnInteraction: false,
-    },
+    loop: false,
+    rewind: true,
+
+    speed: 800,
+    observer: true,
+    observeParents: true,
 
     pagination: {
       el: ".afterSwiper .swiper-pagination",
@@ -364,53 +339,62 @@ if (afterSwiperEl && typeof Swiper !== "undefined") {
       0: {
         slidesPerView: 1,
       },
-
       600: {
         slidesPerView: 2,
       },
-
       900: {
         slidesPerView: 3,
       },
     },
-
-    on: {
-      init(swiper) {
-        playActiveAfterVideo(swiper);
-      },
-
-      slideChangeTransitionEnd(swiper) {
-        playActiveAfterVideo(swiper);
-      },
-    },
   });
-
-  function playActiveAfterVideo(swiper) {
-    swiper.slides.forEach((slide) => {
-      const video = slide.querySelector("video");
-
-      if (!video) return;
-
-      video.pause();
-      video.currentTime = 0;
-    });
-
-    const activeVideo = swiper.slides[swiper.activeIndex]?.querySelector("video");
-
-    activeVideo?.play().catch(() => {});
-  }
 }
 
-/* =========================
-   Web Swiper
-========================= */
+/* after modal */
+const afterVideos = document.querySelectorAll(".afterSwiper video");
+
+const afterModal = document.querySelector(".after_modal");
+const afterModalVideo = document.querySelector(".after_modal_inner video");
+const afterClose = document.querySelector(".after_close");
+
+afterVideos.forEach((video) => {
+  video.addEventListener("click", () => {
+    if (!afterModal || !afterModalVideo) return;
+
+    afterModalVideo.src = video.getAttribute("src");
+
+    afterModal.classList.add("show");
+    document.body.style.overflow = "hidden";
+
+    afterModalVideo.currentTime = 0;
+    afterModalVideo.play().catch(() => {});
+  });
+});
+
+function closeAfterModal() {
+  if (!afterModal || !afterModalVideo) return;
+
+  afterModal.classList.remove("show");
+
+  afterModalVideo.pause();
+  afterModalVideo.removeAttribute("src");
+  afterModalVideo.load();
+
+  document.body.style.overflow = "";
+}
+
+afterClose?.addEventListener("click", closeAfterModal);
+
+afterModal?.addEventListener("click", (e) => {
+  if (e.target === afterModal) {
+    closeAfterModal();
+  }
+});
+/* Web Swiper */
 const webSwiperEl = document.querySelector(".webSwiper");
 
 if (webSwiperEl && typeof Swiper !== "undefined") {
   const pagination = document.createElement("div");
-
   pagination.className = "swiper-pagination";
-
   webSwiperEl.appendChild(pagination);
 
   new Swiper(".webSwiper", {
@@ -433,11 +417,9 @@ if (webSwiperEl && typeof Swiper !== "undefined") {
       0: {
         slidesPerView: 1,
       },
-
       600: {
         slidesPerView: 2,
       },
-
       900: {
         slidesPerView: 3,
       },
@@ -445,9 +427,7 @@ if (webSwiperEl && typeof Swiper !== "undefined") {
   });
 }
 
-/* =========================
-   top button
-========================= */
+/* top button */
 const topBtn = document.querySelector(".top_btn");
 
 if (topBtn) {

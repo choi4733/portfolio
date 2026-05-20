@@ -92,15 +92,13 @@
   width: 58px;
   height: 58px;
   object-fit: contain;
+
   border: 1.5px solid rgba(255, 255, 255, 0.288);
   border-radius: 10px;
   padding: 10px;
 }
-.css_icon {
-  width: 68px !important;
-  height: 68px !important;
-  padding: 6px !important;
-} /* top button */
+
+/* top button */
 .top_btn {
   position: fixed;
   right: 28px;

@@ -46,6 +46,7 @@ a {
 .circle1 span {
   color: #fff;
   font-size: 15px;
+  font-weight: 700;
   opacity: 0;
   transition: opacity 0.25s ease;
 }
@@ -110,7 +111,7 @@ a {
   padding: 0 30px;
   margin: 0;
   list-style: none;
-  background: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.651);
   border-radius: 999px;
   backdrop-filter: blur(10px);
 }
@@ -140,7 +141,7 @@ a {
 
 #nav a {
   color: #000;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 #nav li.active a,
@@ -249,4 +250,10 @@ a {
   width: 100%;
   min-width: 0;
   box-sizing: border-box;
+}
+.premiere .section_title_box,
+.web .section_title_box {
+  position: sticky;
+  top: 120px;
+  align-self: start;
 }

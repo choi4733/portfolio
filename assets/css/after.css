@@ -73,3 +73,63 @@
 .afterSwiper .swiper-pagination-bullet-active {
   background: #00ffff;
 }
+/* modal */
+.afterSwiper video {
+  cursor: pointer;
+}
+
+.after_modal {
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(14px);
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition: 0.35s ease;
+
+  z-index: 9999;
+}
+
+.after_modal.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.after_modal_inner {
+  width: min(1100px, 92vw);
+}
+
+.after_modal_inner video {
+  width: 100%;
+  max-height: 84vh;
+
+  display: block;
+
+  border-radius: 14px;
+  object-fit: contain;
+
+  background: #000;
+}
+
+.after_close {
+  position: absolute;
+  top: 34px;
+  right: 44px;
+
+  border: 0;
+  background: none;
+
+  color: #fff;
+
+  font-size: 2.4rem;
+  line-height: 1;
+
+  cursor: pointer;
+}
