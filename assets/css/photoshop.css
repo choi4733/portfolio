@@ -121,3 +121,7 @@
   font-size: 40px;
   cursor: pointer;
 }
+
+#photoshop .section_title_box p {
+  margin-bottom: 50px;
+}
