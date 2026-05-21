@@ -1,13 +1,11 @@
 /* banner */
 .banner_inner {
   width: 100%;
-  overflow-x: auto;
+  /* overflow-x: auto; */
   overflow-y: hidden;
-
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 32px;
-
   padding: 30px;
   box-sizing: border-box;
 

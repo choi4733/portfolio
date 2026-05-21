@@ -34,7 +34,7 @@
 .afterSwiper {
   width: 100%;
   overflow: hidden;
-  padding-bottom: 28px;
+  padding: 10px 0;
 }
 
 .afterSwiper .swiper-wrapper {

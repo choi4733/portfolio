@@ -141,7 +141,7 @@ a {
 
 #nav a {
   color: #000;
-  font-size: 20px;
+  font-size: 23px;
 }
 
 #nav li.active a,
@@ -256,4 +256,12 @@ a {
   position: sticky;
   top: 120px;
   align-self: start;
+}
+
+/* 미디어쿼리 */
+@media (max-widht: 1024px) {
+}
+@media (max-widht: 768px) {
+}
+@media (max-widht: 480px) {
 }
