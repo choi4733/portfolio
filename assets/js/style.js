@@ -446,3 +446,43 @@ if (topBtn) {
     });
   });
 }
+
+// 프리미어 개인
+document.addEventListener("DOMContentLoaded", () => {
+  const premiereThumbs = document.querySelectorAll(".premiere_thumb[data-video]");
+  const premiereModal = document.querySelector(".premiere_modal");
+  const premiereIframe = document.querySelector(".premiere_modal iframe");
+  const premiereClose = document.querySelector(".premiere_close");
+
+  if (!premiereThumbs.length || !premiereModal || !premiereIframe || !premiereClose) return;
+
+  premiereThumbs.forEach((thumb) => {
+    thumb.addEventListener("click", () => {
+      const videoUrl = thumb.dataset.video;
+
+      premiereIframe.src = videoUrl;
+      premiereModal.classList.add("active");
+      document.body.style.overflow = "hidden";
+    });
+  });
+
+  function closePremiereModal() {
+    premiereModal.classList.remove("active");
+    premiereIframe.src = "";
+    document.body.style.overflow = "";
+  }
+
+  premiereClose.addEventListener("click", closePremiereModal);
+
+  premiereModal.addEventListener("click", (e) => {
+    if (e.target === premiereModal) {
+      closePremiereModal();
+    }
+  });
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closePremiereModal();
+    }
+  });
+});
