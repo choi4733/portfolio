@@ -80,19 +80,23 @@ a {
 /* nav */
 #header {
   position: fixed;
-  top: 40px;
+  top: 26px;
   left: 40px;
   right: 40px;
+
   display: flex;
   justify-content: flex-end;
+
   z-index: 100;
 }
 
 #nav {
   opacity: 0;
   visibility: hidden;
-  transform: translateY(40px);
-  transition: 0.8s ease;
+  transform: translateY(18px);
+
+  transition: 0.6s ease;
+
   pointer-events: none;
 }
 
@@ -100,20 +104,30 @@ a {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
+
   pointer-events: auto;
 }
 
 #nav ul {
   display: flex;
   align-items: center;
-  gap: 40px;
-  height: 52px;
-  padding: 0 30px;
+  gap: 24px;
+
+  height: 42px;
+
+  padding: 2px 24px;
   margin: 0;
+
   list-style: none;
-  background: rgba(255, 255, 255, 0.651);
+
   border-radius: 999px;
-  backdrop-filter: blur(10px);
+
+  background: rgba(1, 33, 37, 0.72);
+  backdrop-filter: blur(14px);
+
+  border: 1px solid rgba(108, 243, 255, 0.22);
+
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
 }
 
 #nav li {
@@ -122,31 +136,38 @@ a {
 
 #nav li::after {
   content: "";
+
   position: absolute;
-  left: 0;
-  bottom: -4px;
+  left: 50%;
+  bottom: -6px;
+
   width: 100%;
   height: 2px;
-  background: #fff;
-  transform: scaleX(0);
+  background: #00ffff;
   opacity: 0;
+  transform: translateX(-50%) scaleX(0);
+
   transition: 0.3s ease;
 }
 
 #nav li.active::after,
 #nav li:hover::after {
-  transform: scaleX(1);
   opacity: 1;
+  transform: translateX(-50%) scaleX(1);
 }
 
 #nav a {
-  color: #000;
-  font-size: 23px;
+  color: rgba(255, 255, 255, 0.88);
+
+  font-size: 15px;
+  font-weight: 500;
+
+  transition: color 0.3s ease;
 }
 
 #nav li.active a,
 #nav a:hover {
-  color: #fff;
+  color: #00ffff;
 }
 
 /* intro */
@@ -216,9 +237,6 @@ a {
   display: inline-block;
   position: relative;
   color: #fff;
-  /* font-size: 3.5rem;
-  font-weight: 700;
-  line-height: 1; */
   font-size: inherit;
   font-weight: inherit;
   line-height: inherit;

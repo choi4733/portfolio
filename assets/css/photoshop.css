@@ -119,7 +119,13 @@
   font-size: 40px;
   cursor: pointer;
 }
-
+#photoshop .section_title_box h2 {
+  font-size: 2.8rem;
+}
+#photoshop .section_title_box h2 span::after {
+  left: 1px;
+  width: calc(100% - 5px);
+}
 #photoshop .section_title_box p {
   margin-bottom: 50px;
 }
