@@ -259,9 +259,9 @@ a {
 }
 
 /* 미디어쿼리 */
-@media (max-widht: 1024px) {
+@media (max-width: 1024px) {
 }
-@media (max-widht: 768px) {
+@media (max-width: 768px) {
 }
-@media (max-widht: 480px) {
+@media (max-width: 480px) {
 }
