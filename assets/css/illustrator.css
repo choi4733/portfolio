@@ -26,10 +26,7 @@
   width: 440px;
   max-width: 100%;
   display: block;
-
   box-shadow: 17px 18px 40px #00000050;
-
-  /* transform: rotate(-4deg); */
   transition:
     transform 0.5s ease,
     box-shadow 0.5s ease;
@@ -61,8 +58,82 @@
 }
 
 /* 호버 */
-.art_inner:hover img {
-  transform: rotate(0deg) scale(1.03);
-
+/* transform: rotate(0deg) scale(1.03); */
+/* .art_inner:hover img {
+  filter: brightness(1.05);
   box-shadow: 25px 30px 60px #00000070;
+} */
+
+/* 이미지 두둥실 */
+.art_inner img {
+  width: 440px;
+  max-width: 100%;
+  display: block;
+  box-shadow: 17px 18px 40px #00000050;
+
+  animation: float 4s ease-in-out infinite;
+
+  transition:
+    filter 0.5s ease,
+    box-shadow 0.5s ease,
+    scale 0.5s ease;
+}
+
+/* hover한 이미지만 */
+.art_inner img:hover {
+  animation: floatStop 4s ease-in-out infinite;
+
+  filter: brightness(1.05);
+  box-shadow: 25px 30px 60px #00000070;
+
+  z-index: 10;
+  position: relative;
+}
+
+/* hover 안 된 다른 이미지는 블러 */
+.art_inner:has(img:hover) img:not(:hover) {
+  filter: blur(3px) brightness(0.7);
+}
+
+/* 두둥실 애니메이션 */
+@keyframes floatStop {
+  0% {
+    transform: translateY(-9px) scale(1.15) rotate(0deg);
+  }
+
+  100% {
+    transform: translateY(-9px) scale(1.15) rotate(0deg);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) rotate(-3deg);
+  }
+
+  50% {
+    transform: translateY(-18px) rotate(-1deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+}
+
+.art_line {
+  animation-delay: 1.5s;
+  animation-name: floatLine;
+}
+@keyframes floatLine {
+  0% {
+    transform: translateY(0) rotate(3deg);
+  }
+
+  50% {
+    transform: translateY(-18px) rotate(1deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(3deg);
+  }
 }
