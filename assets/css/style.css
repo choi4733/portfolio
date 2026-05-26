@@ -170,7 +170,6 @@ a {
 }
 
 /* 미디어쿼리 메뉴바 */
-/* menu toggle */
 .menu_toggle {
   display: none;
   width: 44px;
@@ -505,6 +504,9 @@ a {
   }
 }
 @media (max-width: 480px) {
+  .cursor {
+    display: none;
+  }
   #header {
     top: 14px;
     left: 14px;

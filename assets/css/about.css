@@ -88,16 +88,24 @@
   font-size: 0.9rem;
 }
 
-.skill_item img {
-  width: 58px;
-  height: 58px;
+.skill_item img:not(.css_icon) {
+  width: 45px;
+  height: 45px;
   object-fit: contain;
 
   border: 1.5px solid rgba(255, 255, 255, 0.288);
   border-radius: 10px;
   padding: 10px;
 }
+.css_icon {
+  width: 65px;
+  height: 63px;
+  object-fit: contain;
 
+  border: 1.5px solid rgba(255, 255, 255, 0.288);
+  border-radius: 10px;
+  padding-top: 2px;
+}
 /* top button */
 .top_btn {
   position: fixed;
@@ -191,9 +199,13 @@
     text-align: center;
   }
 
-  .skill_item img {
+  .skill_item img:not(.css_icon) {
     width: 58px;
     height: 58px;
+  }
+  .css_icon {
+    width: 78px;
+    height: 76px;
   }
 }
 
@@ -215,6 +227,10 @@
   .about_skill {
     grid-template-columns: repeat(4, 1fr);
     padding: 30px 40px;
+  }
+  .css_icon {
+    width: 78px;
+    height: 76px;
   }
 }
 
@@ -291,12 +307,15 @@
     font-size: 0.82rem;
   }
 
-  .skill_item img {
+  .skill_item img:not(.css_icon) {
     width: 50px;
     height: 50px;
     padding: 9px;
   }
-
+  .css_icon {
+    width: 68px;
+    height: 66px;
+  }
   .top_btn {
     right: 20px;
     bottom: 20px;
@@ -364,13 +383,16 @@
     font-size: 0.76rem;
   }
 
-  .skill_item img {
+  .skill_item img:not(.css_icon) {
     width: 46px;
     height: 46px;
     padding: 8px;
     border-radius: 9px;
   }
-
+  .css_icon {
+    width: 62px;
+    height: 60px;
+  }
   .top_btn {
     right: 18px;
     bottom: 18px;
