@@ -276,6 +276,9 @@
 
   .about_info strong {
     font-size: 0.98rem;
+    overflow-wrap: break-word;
+    word-break: keep-all;
+    line-height: 1.5;
   }
 
   .about_skill {
