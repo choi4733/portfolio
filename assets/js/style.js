@@ -2,6 +2,7 @@ const introVideo = document.querySelector("#introVideo");
 const nav = document.querySelector("#nav");
 const artwork = document.querySelector(".artwork");
 const navLinks = document.querySelectorAll("#nav a");
+const menuToggle = document.querySelector(".menu_toggle");
 
 let lastScrollY = 0;
 let isAutoScrolling = false;
@@ -71,6 +72,11 @@ function activeNav() {
   });
 }
 
+function closeMobileMenu() {
+  menuToggle?.classList.remove("active");
+  nav?.classList.remove("show_menu");
+}
+
 navLinks.forEach((link) => {
   link.addEventListener("click", () => {
     navLinks.forEach((item) => {
@@ -78,6 +84,7 @@ navLinks.forEach((link) => {
     });
 
     link.parentElement.classList.add("active");
+    closeMobileMenu();
   });
 });
 
@@ -103,6 +110,12 @@ window.addEventListener("scroll", () => {
   }
 
   lastScrollY = currentScrollY;
+});
+
+/* mobile menu */
+menuToggle?.addEventListener("click", () => {
+  menuToggle.classList.toggle("active");
+  nav?.classList.toggle("show_menu");
 });
 
 /* cursor */
@@ -322,10 +335,8 @@ if (afterSwiperEl && typeof Swiper !== "undefined") {
   new Swiper(".afterSwiper", {
     slidesPerView: 3,
     spaceBetween: 10,
-
     loop: false,
     rewind: true,
-
     speed: 800,
     observer: true,
     observeParents: true,
@@ -449,7 +460,7 @@ if (topBtn) {
   });
 }
 
-// 프리미어 개인 모달
+/* premiere modal */
 const premiereThumbs = document.querySelectorAll(".premiere_thumb[data-video]");
 const premiereModal = document.querySelector(".premiere_modal");
 const premiereIframe = document.querySelector(".premiere_modal iframe");
@@ -483,10 +494,21 @@ premiereModal?.addEventListener("click", (e) => {
   }
 });
 
+/* escape close */
 window.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
     closePremiereModal();
     closeEventModal();
     closeAfterModal();
+    closeMobileMenu();
+  }
+});
+/* mobile outside click */
+document.addEventListener("click", (e) => {
+  const isNav = nav?.contains(e.target);
+  const isToggle = menuToggle?.contains(e.target);
+
+  if (!isNav && !isToggle) {
+    closeMobileMenu();
   }
 });
