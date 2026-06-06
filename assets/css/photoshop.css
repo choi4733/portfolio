@@ -43,7 +43,7 @@
   object-position: top;
 
   border-radius: 10px;
-  border: 1px solid rgba(180, 230, 255, 0.45);
+  /* border: 1px solid rgba(180, 230, 255, 0.45); */
 
   /* box-shadow:
     0 0 12px rgba(120, 210, 255, 0.35),

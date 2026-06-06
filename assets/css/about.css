@@ -8,7 +8,9 @@
   height: 3px;
   bottom: -16px;
 }
-.about_inner {
+
+/* 원본 */
+/* .about_inner {
   display: grid;
   grid-template-columns: 1fr 1.4fr;
 
@@ -21,6 +23,7 @@
   padding: 40px 50px;
   border-right: 1px solid rgba(255, 255, 255, 0.1);
 }
+
 .about_info {
   display: flex;
   flex-direction: column;
@@ -31,11 +34,7 @@
   display: grid;
   grid-template-columns: 40px 110px 1fr;
   align-items: center;
-
   gap: 24px;
-
-  margin-bottom: 0;
-
   color: #fff;
   font-size: 1.08rem;
 }
@@ -70,12 +69,81 @@
   font-weight: 600;
   letter-spacing: -0.02em;
 }
-
 .about_skill {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 22px 34px;
   padding: 24px 44px;
+} */
+
+/* 수정 */
+.about_inner {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  overflow: hidden;
+}
+
+.about_profile {
+  padding: 40px 50px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.about_info {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  column-gap: 70px;
+  row-gap: 26px;
+}
+
+.about_info li {
+  display: grid;
+  grid-template-columns: 28px 72px 1fr;
+  align-items: start;
+  gap: 14px;
+
+  color: #fff;
+  font-size: 1rem;
+}
+
+.about_info span:first-child {
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about_info span i {
+  color: #6cf3ff;
+  font-size: 1rem;
+}
+
+.about_info span:nth-child(2) {
+  width: auto;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.about_info strong {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: -0.02em;
+
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.about_skill {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px 24px;
+  padding: 26px 44px;
 }
 
 .skill_item {
@@ -157,18 +225,16 @@
   }
 
   .about_info {
-    display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 0;
+    column-gap: 24px;
+    row-gap: 30px;
   }
 
   .about_info li {
     display: flex;
     flex-direction: column;
     align-items: center;
-
     gap: 8px;
-
     text-align: center;
   }
 
@@ -188,9 +254,7 @@
 
   .about_skill {
     grid-template-columns: repeat(4, 1fr);
-
     gap: 30px 0;
-
     padding: 36px 56px 40px;
   }
 
@@ -213,11 +277,13 @@
   .about {
     padding: 90px 0 70px;
   }
-
-  .about_inner {
-    grid-template-columns: 1fr;
+  .about_profile {
+    padding: 34px 40px;
   }
-
+  .about_info {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px 20px;
+  }
   .about_profile {
     padding: 34px 40px;
     border-right: 0;
@@ -226,7 +292,7 @@
 
   .about_skill {
     grid-template-columns: repeat(4, 1fr);
-    padding: 30px 40px;
+    padding: 32px 40px;
   }
   .css_icon {
     width: 78px;
@@ -272,19 +338,21 @@
   }
 
   .about_profile {
-    padding: 32px 34px;
+    padding: 32px 30px;
   }
 
   .about_info {
-    gap: 22px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 26px 22px;
   }
 
   .about_info li {
-    grid-template-columns: 36px 90px 1fr;
-    gap: 16px;
-    font-size: 0.94rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
   }
-
   .about_info span:first-child {
     width: 36px;
     height: 36px;
@@ -292,14 +360,12 @@
 
   .about_info strong {
     font-size: 0.98rem;
-    overflow-wrap: break-word;
-    word-break: keep-all;
     line-height: 1.5;
   }
 
   .about_skill {
     grid-template-columns: repeat(4, 1fr);
-    gap: 22px 20px;
+    gap: 24px 18px;
     padding: 30px 34px;
   }
 
@@ -350,13 +416,16 @@
   }
 
   .about_info {
+    grid-template-columns: 1fr;
     gap: 20px;
   }
 
   .about_info li {
-    grid-template-columns: 32px 72px 1fr;
+    display: grid;
+    grid-template-columns: 30px 76px 1fr;
+    align-items: start;
     gap: 12px;
-    font-size: 0.82rem;
+    text-align: left;
   }
 
   .about_info span:first-child {

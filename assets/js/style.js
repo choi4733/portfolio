@@ -60,7 +60,10 @@ function activeNav() {
 
     const rect = targetSection.getBoundingClientRect();
 
-    if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+    if (
+      rect.top <= window.innerHeight / 2 &&
+      rect.bottom >= window.innerHeight / 2
+    ) {
       currentId = targetId;
     }
   });
@@ -118,6 +121,15 @@ menuToggle?.addEventListener("click", () => {
   nav?.classList.toggle("show_menu");
 });
 
+document.addEventListener("click", (e) => {
+  const isNav = nav?.contains(e.target);
+  const isToggle = menuToggle?.contains(e.target);
+
+  if (!isNav && !isToggle) {
+    closeMobileMenu();
+  }
+});
+
 /* cursor */
 const cursor = document.querySelector(".cursor");
 const circle1 = document.querySelector(".circle1");
@@ -160,18 +172,20 @@ function cursorAnimation() {
 
 cursorAnimation();
 
-document.querySelectorAll("a, button, #nav li, video, img").forEach((target) => {
-  target.addEventListener("mouseenter", () => {
-    if (target.closest(".intro")) return;
-    if (target.closest(".art_inner")) return;
+document
+  .querySelectorAll("a, button, #nav li, video, img")
+  .forEach((target) => {
+    target.addEventListener("mouseenter", () => {
+      if (target.closest(".intro")) return;
+      if (target.closest(".art_inner")) return;
 
-    cursor?.classList.add("hover");
-  });
+      cursor?.classList.add("hover");
+    });
 
-  target.addEventListener("mouseleave", () => {
-    cursor?.classList.remove("hover");
+    target.addEventListener("mouseleave", () => {
+      cursor?.classList.remove("hover");
+    });
   });
-});
 
 /* gsap animation */
 if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
@@ -225,8 +239,9 @@ if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
 }
 
 /* photoshop preview / modal */
-const bannerImages = document.querySelectorAll(".banner_l > img, .banner_r img");
-
+const bannerImages = document.querySelectorAll(
+  ".banner_l > img, .banner_r img",
+);
 const eventPreview = document.querySelector(".event_preview");
 const eventModal = document.querySelector(".event_modal");
 const eventModalImg = document.querySelector(".event_modal_inner img");
@@ -361,7 +376,7 @@ if (afterSwiperEl && typeof Swiper !== "undefined") {
 }
 
 /* after modal */
-const afterSlides = document.querySelectorAll(".after_slide[data-video], .after_slide");
+const afterSlides = document.querySelectorAll(".after_slide");
 const afterModal = document.querySelector(".after_modal");
 const afterModalVideo = document.querySelector(".after_modal_inner video");
 const afterClose = document.querySelector(".after_close");
@@ -369,9 +384,11 @@ const afterClose = document.querySelector(".after_close");
 afterSlides.forEach((slide) => {
   slide.addEventListener("click", () => {
     const thumb = slide.querySelector(".after_thumb");
+
     if (!thumb || !afterModal || !afterModalVideo) return;
 
     const videoSrc = thumb.dataset.video;
+
     if (!videoSrc) return;
 
     afterModalVideo.src = videoSrc;
@@ -402,43 +419,45 @@ afterModal?.addEventListener("click", (e) => {
   }
 });
 
-/* Web Swiper */
-const webSwiperEl = document.querySelector(".webSwiper");
+/* premiere modal */
+const premiereTriggers = document.querySelectorAll(
+  ".premiere_thumb[data-video], .premiere_btn[data-video]",
+);
+const premiereModal = document.querySelector(".premiere_modal");
+const premiereIframe = document.querySelector(".premiere_modal iframe");
+const premiereClose = document.querySelector(".premiere_close");
 
-if (webSwiperEl && typeof Swiper !== "undefined") {
-  const pagination = document.createElement("div");
-  pagination.className = "swiper-pagination";
-  webSwiperEl.appendChild(pagination);
+function closePremiereModal() {
+  if (!premiereModal || !premiereIframe) return;
 
-  new Swiper(".webSwiper", {
-    slidesPerView: 3,
-    spaceBetween: 12,
-    loop: true,
-    speed: 800,
-
-    autoplay: {
-      delay: 2500,
-      disableOnInteraction: false,
-    },
-
-    pagination: {
-      el: ".webSwiper .swiper-pagination",
-      clickable: true,
-    },
-
-    breakpoints: {
-      0: {
-        slidesPerView: 1,
-      },
-      600: {
-        slidesPerView: 2,
-      },
-      900: {
-        slidesPerView: 3,
-      },
-    },
-  });
+  premiereModal.classList.remove("active");
+  premiereIframe.src = "";
+  document.body.style.overflow = "";
 }
+
+premiereTriggers.forEach((item) => {
+  item.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    if (!premiereModal || !premiereIframe) return;
+
+    const videoUrl = item.dataset.video;
+
+    if (!videoUrl) return;
+
+    premiereIframe.src = videoUrl;
+    premiereModal.classList.add("active");
+    document.body.style.overflow = "hidden";
+  });
+});
+
+premiereClose?.addEventListener("click", closePremiereModal);
+
+premiereModal?.addEventListener("click", (e) => {
+  if (e.target === premiereModal) {
+    closePremiereModal();
+  }
+});
 
 /* top button */
 const topBtn = document.querySelector(".top_btn");
@@ -460,55 +479,12 @@ if (topBtn) {
   });
 }
 
-/* premiere modal */
-const premiereThumbs = document.querySelectorAll(".premiere_thumb[data-video]");
-const premiereModal = document.querySelector(".premiere_modal");
-const premiereIframe = document.querySelector(".premiere_modal iframe");
-const premiereClose = document.querySelector(".premiere_close");
-
-function closePremiereModal() {
-  if (!premiereModal || !premiereIframe) return;
-
-  premiereModal.classList.remove("active");
-  premiereIframe.src = "";
-  document.body.style.overflow = "";
-}
-
-premiereThumbs.forEach((thumb) => {
-  thumb.addEventListener("click", () => {
-    if (!premiereModal || !premiereIframe) return;
-
-    const videoUrl = thumb.dataset.video;
-
-    premiereIframe.src = videoUrl;
-    premiereModal.classList.add("active");
-    document.body.style.overflow = "hidden";
-  });
-});
-
-premiereClose?.addEventListener("click", closePremiereModal);
-
-premiereModal?.addEventListener("click", (e) => {
-  if (e.target === premiereModal) {
-    closePremiereModal();
-  }
-});
-
 /* escape close */
 window.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
     closePremiereModal();
     closeEventModal();
     closeAfterModal();
-    closeMobileMenu();
-  }
-});
-/* mobile outside click */
-document.addEventListener("click", (e) => {
-  const isNav = nav?.contains(e.target);
-  const isToggle = menuToggle?.contains(e.target);
-
-  if (!isNav && !isToggle) {
     closeMobileMenu();
   }
 });
