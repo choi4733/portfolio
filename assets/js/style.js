@@ -238,6 +238,54 @@ if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
   );
 }
 
+/* illustrator 480 이하 modal */
+const artImages = document.querySelectorAll(
+  ".art_inner .art_color, .art_inner .art_line",
+);
+
+const artModal = document.querySelector(".art_modal");
+const artModalImg = document.querySelector(".art_modal img");
+const artClose = document.querySelector(".art_close");
+
+function closeArtModal() {
+  if (!artModal || !artModalImg) return;
+
+  artModal.classList.remove("show");
+
+  artModalImg.classList.remove("line_bg");
+  artModalImg.src = "";
+  artModalImg.alt = "";
+
+  document.body.style.overflow = "";
+}
+
+artImages.forEach((img) => {
+  img.addEventListener("click", () => {
+    if (window.innerWidth > 480) return;
+    if (!artModal || !artModalImg) return;
+
+    artModalImg.src = img.src;
+    artModalImg.alt = img.alt || "";
+
+    if (img.classList.contains("art_line")) {
+      artModalImg.classList.add("line_bg");
+    } else {
+      artModalImg.classList.remove("line_bg");
+    }
+
+    artModal.classList.add("show");
+    document.body.style.overflow = "hidden";
+  });
+});
+
+artClose?.addEventListener("click", closeArtModal);
+
+artModal?.addEventListener("click", (e) => {
+  if (e.target === artModal) {
+    closeArtModal();
+  }
+});
+
 /* photoshop preview / modal */
 const bannerImages = document.querySelectorAll(
   ".banner_l > img, .banner_r img",
@@ -485,6 +533,7 @@ window.addEventListener("keydown", (e) => {
     closePremiereModal();
     closeEventModal();
     closeAfterModal();
+    closeArtModal();
     closeMobileMenu();
   }
 });

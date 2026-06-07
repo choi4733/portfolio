@@ -143,8 +143,9 @@
   align-items: center;
   justify-content: center;
 
-  background: rgba(0, 0, 0, 0.72);
-  backdrop-filter: blur(14px);
+  background: rgba(1, 33, 37, 0.55);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
 
   opacity: 0;
   visibility: hidden;
