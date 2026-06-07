@@ -138,22 +138,22 @@ a {
   content: "";
 
   position: absolute;
-  left: 50%;
+  left: 0;
   bottom: -6px;
 
   width: 100%;
   height: 2px;
   background: #00ffff;
   opacity: 0;
-  transform: translateX(-50%) scaleX(0);
-
-  transition: 0.3s ease;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 #nav li.active::after,
 #nav li:hover::after {
   opacity: 1;
-  transform: translateX(-50%) scaleX(1);
+  transform: scaleX(1);
 }
 
 #nav a {
@@ -289,7 +289,7 @@ a {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -15px;
+  bottom: -10px;
   width: 100%;
   height: 2px;
   background: #6cf3ff;
@@ -447,11 +447,34 @@ a {
     box-shadow: none;
     backdrop-filter: none;
   }
-
-  #nav li::after {
-    display: none;
+  #nav li {
+    position: relative;
+    width: fit-content;
   }
+  #nav li::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -8px;
 
+    width: 100%;
+    height: 2px;
+
+    background: #6cf3ff;
+
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: left center;
+
+    transition:
+      transform 0.5s ease,
+      opacity 0.5s ease;
+  }
+  #nav li:hover::after,
+  #nav li.active::after {
+    opacity: 1;
+    transform: scaleX(1);
+  }
   #nav a {
     font-size: 1.55rem;
     font-weight: 700;

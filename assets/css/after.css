@@ -8,14 +8,6 @@
   margin-top: 60px;
 }
 
-.after .section_title_box h2 > span::after {
-  left: -4px;
-  width: calc(100% + 7px);
-  height: 3px;
-  bottom: -16px;
-  background: #6cf3ff;
-}
-
 /* inner box */
 .after_mask {
   grid-column: 2;

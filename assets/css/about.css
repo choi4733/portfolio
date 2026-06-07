@@ -100,7 +100,7 @@
 .about_info li {
   display: grid;
   grid-template-columns: 28px 72px 1fr;
-  align-items: start;
+  align-items: center;
   gap: 14px;
 
   color: #fff;
@@ -154,8 +154,18 @@
 
   color: rgba(255, 255, 255, 0.85);
   font-size: 0.9rem;
+  text-align: center;
 }
+.skill_item span {
+  min-height: 40px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 
+  line-height: 1.35;
+  text-align: center;
+  word-break: keep-all;
+}
 .skill_item img:not(.css_icon) {
   width: 45px;
   height: 45px;
@@ -219,22 +229,27 @@
   }
 
   .about_profile {
-    padding: 38px 56px 34px;
+    padding: 42px 32px 44px;
     border-right: 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .about_info {
+    justify-items: center;
     grid-template-columns: repeat(3, 1fr);
-    column-gap: 24px;
-    row-gap: 30px;
+    column-gap: 40px;
+    row-gap: 48px;
   }
-
+  .about_info li:nth-child(1),
+  .about_info li:nth-child(4) {
+    transform: translateX(-20px);
+  }
   .about_info li {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    justify-content: flex-start;
+    gap: 9px;
     text-align: center;
   }
 
@@ -242,34 +257,49 @@
     width: 34px;
     height: 34px;
   }
+  .about_info span i {
+    font-size: 1rem;
+  }
 
   .about_info span:nth-child(2) {
     font-size: 0.8rem;
   }
 
   .about_info strong {
-    font-size: 0.95rem;
-    word-break: break-all;
+    font-size: 0.94rem;
+    line-height: 1.6;
+    word-break: keep-all;
   }
 
   .about_skill {
     grid-template-columns: repeat(4, 1fr);
-    gap: 30px 0;
-    padding: 36px 56px 40px;
+    column-gap: 28px;
+    row-gap: 46px;
+    padding: 38px 56px 46px;
   }
 
   .skill_item {
+    min-width: 0;
     align-items: center;
     text-align: center;
+    gap: 8px;
+  }
+  .skill_item span {
+    display: block;
+    width: 100%;
+    line-height: 1.35;
+    text-align: center;
+    word-break: keep-all;
   }
 
+  /* 스킬아이콘 크기 */
   .skill_item img:not(.css_icon) {
-    width: 58px;
-    height: 58px;
+    width: 40px;
+    height: 40px;
   }
   .css_icon {
-    width: 78px;
-    height: 76px;
+    width: 60px;
+    height: 58px;
   }
 }
 
@@ -284,6 +314,9 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 28px 20px;
   }
+  .about_info strong {
+    font-size: 0.8rem;
+  }
   .about_profile {
     padding: 34px 40px;
     border-right: 0;
@@ -294,9 +327,14 @@
     grid-template-columns: repeat(4, 1fr);
     padding: 32px 40px;
   }
+  /* 스킬아이콘 크기 */
+  .skill_item img:not(.css_icon) {
+    width: 35px;
+    height: 35px;
+  }
   .css_icon {
-    width: 78px;
-    height: 76px;
+    width: 57px;
+    height: 55px;
   }
 }
 
@@ -304,7 +342,9 @@
   .about {
     padding: 90px 0 80px;
   }
-
+  .about_profile {
+    padding: 34px 24px;
+  }
   .about .section_title_box {
     width: 100%;
     text-align: center;
@@ -337,50 +377,46 @@
     border-radius: 14px;
   }
 
-  .about_profile {
-    padding: 32px 30px;
-  }
-
   .about_info {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 26px 22px;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    column-gap: 64px;
+    row-gap: 44px;
   }
 
   .about_info li {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
     text-align: center;
+    gap: 8px;
+  }
+  .about_info li:nth-child(1),
+  .about_info li:nth-child(4) {
+    transform: none;
   }
   .about_info span:first-child {
     width: 36px;
     height: 36px;
   }
-
   .about_info strong {
-    font-size: 0.98rem;
-    line-height: 1.5;
+    max-width: 100%;
+    font-size: 0.8rem;
+    line-height: 1.55;
+    word-break: keep-all;
+    overflow-wrap: break-word;
   }
-
   .about_skill {
     grid-template-columns: repeat(4, 1fr);
     gap: 24px 18px;
     padding: 30px 34px;
   }
-
   .skill_item {
     font-size: 0.82rem;
-  }
-
-  .skill_item img:not(.css_icon) {
-    width: 50px;
-    height: 50px;
-    padding: 9px;
-  }
-  .css_icon {
-    width: 68px;
-    height: 66px;
   }
   .top_btn {
     right: 20px;
@@ -392,29 +428,23 @@
   .about {
     padding: 90px 0 70px;
   }
-
   .about .section_title_box {
     margin-bottom: 38px;
   }
-
   .about .section_title_box h2 {
     font-size: 2rem;
     margin-bottom: 15px;
   }
-
   .about .section_title_box p {
     max-width: 280px;
     font-size: 0.84rem;
   }
-
   .about_inner {
     border-radius: 12px;
   }
-
   .about_profile {
     padding: 26px 20px;
   }
-
   .about_info {
     grid-template-columns: 1fr;
     gap: 20px;
@@ -422,15 +452,19 @@
 
   .about_info li {
     display: grid;
-    grid-template-columns: 30px 76px 1fr;
-    align-items: start;
-    gap: 12px;
+    grid-template-columns: 32px 76px 1fr;
+    align-items: center;
+    column-gap: 12px;
+    row-gap: 0;
     text-align: left;
   }
 
   .about_info span:first-child {
     width: 32px;
     height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .about_info span i {
@@ -453,14 +487,12 @@
   }
 
   .skill_item img:not(.css_icon) {
-    width: 46px;
-    height: 46px;
-    padding: 8px;
-    border-radius: 9px;
+    width: 32px;
+    height: 32px;
   }
   .css_icon {
-    width: 62px;
-    height: 60px;
+    width: 52px;
+    height: 50px;
   }
   .top_btn {
     right: 18px;
